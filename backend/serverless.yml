@@ -1,11 +1,11 @@
 service:
   name: serverless-todo-app
-#################################################### Plugins
+## ------------------------- Plugins ---------------------------------## 
 plugins:
   - serverless-webpack
   - serverless-iam-roles-per-function
   - serverless-reqvalidator-plugin
-#################################################### Provider
+## ------------------------ Provider ---------------------------------##
 provider:
   name: aws
   runtime: nodejs12.x
@@ -26,7 +26,6 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        # - dynamodb:Scan
         - dynamodb:Query
         - dynamodb:PutItem
         - dynamodb:GetItem
@@ -48,7 +47,7 @@ provider:
         - dynamodb:Query
       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}/index/${self:provider.environment.USERID_INDEX}
 
-############## models      
+## ------------------------------- Models ------------------------------------ ##      
 custom:
   documentation:
     api:
@@ -62,8 +61,9 @@ custom:
         schema: ${file(src/models/create-todo-request.json)}
       - name: UpdateTodoRequest
         contentType: application/json
-        schema: ${file(src/models/update-todo-request.json)}        
-####################################################### Functions
+        schema: ${file(src/models/update-todo-request.json)}
+
+## -------------------------------- Functions --------------------------------- ##
 functions:
  ## Auth
   RS256Auth:
@@ -84,7 +84,6 @@ functions:
     iamRoleStatements:
       - Effect: Allow
         Action:
-          # - dynamodb:Scan
           - dynamodb:Query
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
       - Effect: Allow
@@ -163,7 +162,7 @@ functions:
           cors: true
           authorizer: RS256Auth
 
-############################################################## Resources
+## ---------------------------------- Resources ------------------------------------- ##
 resources:
   Resources:
     # GetTodos table
