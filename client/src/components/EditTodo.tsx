@@ -52,12 +52,9 @@ export class EditTodo extends React.PureComponent<
 
       this.setUploadState(UploadState.FetchingPresignedUrl)
       const uploadUrl = await getUploadUrl(this.props.auth.getIdToken(), this.props.match.params.todoId)
-      console.log("hi ", uploadUrl) //URL with the image to upload
-      console.log("yo", this.props.auth.getIdToken())
-      console.log("sup", this.props.match.params.todoId)
       this.setUploadState(UploadState.UploadingFile)
       await uploadFile(uploadUrl, this.state.file)
-      //This is where the new file name could be replaced in the frontend.
+      
       alert('File was uploaded!')
     } catch (e) {
       alert('Could not upload a file: ' + e.message)
