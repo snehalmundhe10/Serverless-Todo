@@ -1,17 +1,10 @@
 # Serverless TODO
 
-To implement this project, you need to implement a simple TODO application using AWS Lambda and Serverless framework. Search for all comments starting with the `TODO:` in the code to find the placeholders that you need to implement.
-
-# Functionality of the application
+## Functionality of the application
 
 This application will allow creating/removing/updating/fetching TODO items. Each TODO item can optionally have an attachment image. Each user only has access to TODO items that he/she has created.
 
-
-
-
 # Functions implemented
-
-To implement this project, you need to implement the following functions and configure them in the `serverless.yml` file:
 
 * `Auth` - Implement a custom authorizer for API Gateway that is added to all other functions.
 
@@ -59,3 +52,20 @@ This should start a development server with the React application that will inte
 ![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/authToken%201.png)
 
 ![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/authtoken.png)
+
+![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/createTodos.png)
+
+![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/getTodos.png)
+
+![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/updateTodos.png)
+
+![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/item%20deleted.png)
+
+![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/getuploadurl.png)
+
+![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/file%20upload.png)
+
+## Author
+Snehal Mundhe
+
+
