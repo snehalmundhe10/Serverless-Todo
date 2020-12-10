@@ -6,8 +6,6 @@ This application will allow creating/removing/updating/fetching TODO items. Each
 
 # Functions implemented
 
-To implement this project, you need to implement the following functions and configure them in the `serverless.yml` file:
-
 * `Auth` - Implement a custom authorizer for API Gateway that is added to all other functions.
 
 * `GetTodos` - Return all TODOs for a current user. A user id is extracted from a JWT token that is sent by the frontend
