@@ -11,13 +11,11 @@ const todosTable = process.env.TODOS_TABLE
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   const todoId = event.pathParameters.todoId
-  console.log("todoId ", todoId)
   const authorization = event.headers.Authorization
   const split = authorization.split(' ')
   const jwtToken = split[1]
 
   const validTodoId = await todoExists(todoId)
-  console.log("def")
   if (!validTodoId){
     return{
       statusCode:404,
@@ -30,7 +28,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     }
   }
 
-  console.log("abc")
+  
   
   var params = {
     TableName: todosTable,

@@ -5,6 +5,7 @@ plugins:
   - serverless-webpack
   - serverless-iam-roles-per-function
   - serverless-reqvalidator-plugin
+  - serverless-aws-documentation
 ## ------------------------ Provider ---------------------------------##
 provider:
   name: aws
@@ -58,17 +59,16 @@ custom:
     models:
       - name: TodoRequest
         contentType: application/json
-        schema: ${file(src/models/create-todo-request.json)}
+        schema: ${file(models/create-todo-request.json)}
       - name: UpdateTodoRequest
         contentType: application/json
-        schema: ${file(src/models/update-todo-request.json)}
+        schema: ${file(models/update-todo-request.json)}
 
 ## -------------------------------- Functions --------------------------------- ##
 functions:
  ## Auth
   RS256Auth:
     handler: src/lambda/auth/rs256Auth0Authorizer.handler
-
   Auth:
     handler: src/lambda/auth/auth0Authorizer.handler
   ## Get Todo
@@ -165,6 +165,16 @@ functions:
 ## ---------------------------------- Resources ------------------------------------- ##
 resources:
   Resources:
+    GatewayResponseDefault4XX:
+      Type: AWS::ApiGateway::GatewayResponse
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+          gatewayresponse.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST'"
+        ResponseType: DEFAULT_4XX
+        RestApiId:
+          Ref: ApiGatewayRestApi
     # GetTodos table
     TodosDynamoDBTable:
       Type: AWS::DynamoDB::Table

@@ -49,7 +49,7 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
       const dueDate = this.calculateDueDate()
       const createdDate = this.getcreatedDate()
       const donetask = false
-      const attachmentUrl = "https://thumbnails.expedia.com/_HBC_6Pfw5Mb7pVsT0lT_lExi_s=/536x384/smart/filters:quality(60)/a.cdn-hotels.com/cos/heroimage/Boston_0_107851325.jpg"
+      const attachmentUrl = " "
       const newTodo = await createTodo(this.props.auth.getIdToken(), {
         name: this.state.newTodoName,
         dueDate: dueDate,
@@ -58,7 +58,7 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
         attachmentUrl: attachmentUrl
       })
 
-      console.log('mynewtodo', newTodo)
+      
 
       this.setState({
         todos: [...this.state.todos, newTodo],
@@ -103,7 +103,7 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
   async componentDidMount() {
     try {
       const todos = await getTodos(this.props.auth.getIdToken())
-      console.log("mightymouse", todos)
+      
       this.setState({
         todos,
         loadingTodos: false
@@ -229,4 +229,6 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
 
     return dateFormat(date, 'yyyy-mm-dd') as string
   }
+  
+  
 }

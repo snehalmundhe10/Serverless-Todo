@@ -13,8 +13,7 @@ const todosTable = process.env.TODOS_TABLE
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   console.log("Caller event", event)
   const todoId = event.pathParameters.todoId
-  console.log("todoId ", todoId)
-
+ 
   const validTodoId = await todoExists(todoId)
 
   if (!validTodoId){
@@ -34,11 +33,9 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   const jwtToken = split[1]
 
   const oldTodoId = await retrieveOld(todoId)
-  console.log(oldTodoId.CreatedAt)
+ 
 
   const updatedTodo: UpdateTodoRequest = JSON.parse(event.body)
-
-  console.log("updatedtodo ", updatedTodo)
 
   const updatedItem = {
     todoId: todoId,
@@ -48,7 +45,6 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     ...updatedTodo
   }
 
-  console.log("updateditem is ", updatedItem)
 
   await docClient.put({
     TableName: todosTable,
@@ -75,8 +71,6 @@ async function todoExists(todoId: string){
       }
     })
     .promise()
-
-    console.log('Get todo: ', result)
     return !!result.Item
 }
 

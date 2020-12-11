@@ -104,15 +104,10 @@ async function createAttachment(todoId: string, attachmentId: string, event: any
     done: oldTodoId.done,
     attachmentUrl: `https://${bucketName}.s3.amazonaws.com/${attachmentId}`
   }
-
-  console.log("updateditem is ", updatedItem)
-
   await docClient.put({
     TableName: todosTable,
     Item: updatedItem
-  }).promise()
-  console.log("upload completed!")
-
+  }).promise();
   return newItem
 }
 

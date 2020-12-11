@@ -1,32 +1,51 @@
 import * as uuid from 'uuid'
 
-import { TodoItem } from '../models/TodoItem'
+import { TodoItem } from '../../models/TodoItem'
 import { TodoAccess } from '../dataLayer/todosAccess'
 import { CreateTodoRequest } from '../requests/CreateTodoRequest'
-import { parseUserId } from '../auth/utils'
+import { UpdateTodoRequest } from '../requests/UpdateTodoRequest'
 
 const todoAccess = new TodoAccess()
 
-export async function getAllTodos(): Promise<TodoItem[]> {
-  return todoAccess.getAllTodos()
+export async function getAllTodos(userId: string): Promise<TodoItem[]> {
+
+  return await todoAccess.getAllTodos(userId)
 }
 
-export async function createTodo(
-  createTodoRequest: CreateTodoRequest,
-  jwtToken: string
+export async function createTodoItem(
+  createGroupRequest: CreateTodoRequest,
+  userId: string
 ): Promise<TodoItem> {
 
-  const itemId = uuid.v4()
-  const userId = parseUserId(jwtToken)
-  const mydate = new Date()
-  const newdate = mydate.setDate(mydate.getDate()+7).toString()
-  return await todoAccess.createTodo({
-    userId: userId,
-    todoId: itemId,
-    createdAt: mydate.toISOString(),
-    name: createTodoRequest.name,
-    dueDate: newdate,
+  return await todoAccess.createTodoItem({
+    userId,
+    todoId: uuid.v4(),
     done: false,
-    attachmentUrl: "www.image.com/cats.jpg"
+    createdAt: new Date().toISOString(),
+    ...createGroupRequest
   })
+}
+
+export async function generateUploadUrl(userId: string, todoId: string): Promise<string> {
+  const uploadUrl = await todoAccess.getSignedUrl(todoId)
+  await todoAccess.updateAttachmentUrl(userId, todoId)
+
+  return uploadUrl
+}
+
+export async function updateTodoItem(
+  updateTodoRequest: UpdateTodoRequest,
+  userId: string,
+  todoId: string
+): Promise<void> {
+
+  await todoAccess.updateTodoItem(updateTodoRequest, userId, todoId)
+}
+
+export async function deleteTodoItem(userId: string, todoId: string) {
+
+  await Promise.all([
+    todoAccess.deleteTodoItem(userId, todoId),
+    todoAccess.deleteTodoItemAttachment(todoId)
+  ])  
 }
