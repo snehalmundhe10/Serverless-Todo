@@ -98,4 +98,21 @@ export class TodoAccess {
       Key: bucketKey
     }).promise()
   }
+//   async updateTodoUrl(updatedTodo: any): Promise<TodoItem> {
+//     await this.docClient.update({
+//         TableName: this.todoTable,
+//         Key: { 
+//             todoId: updatedTodo.todoId, 
+//             userId: updatedTodo.userId },
+//         ExpressionAttributeNames: {"#A": "attachmentUrl"},
+//         UpdateExpression: "set #A = :attachmentUrl",
+//         ExpressionAttributeValues: {
+//             ":attachmentUrl": updatedTodo.attachmentUrl,
+//         },
+//         ReturnValues: "UPDATED_NEW"
+//     }).promise()
+      
+//     return updatedTodo
+    
+// }
 }
