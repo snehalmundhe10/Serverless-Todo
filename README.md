@@ -43,24 +43,6 @@ npm run start
 
 This should start a development server with the React application that will interact with the serverless TODO application.
 
-# Screenshots of the application
-
-![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/serverless%20app-1.png)
-
-![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/serverless%20app-2.png)
-
-![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/createTodos.png)
-
-![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/getTodos.png)
-
-![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/updateTodos.png)
-
-![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/item%20deleted.png)
-
-![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/getuploadurl.png)
-
-![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/file%20upload.png)
-
 ## Author
 Snehal Mundhe
 
