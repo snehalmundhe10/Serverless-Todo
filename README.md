@@ -49,10 +49,6 @@ This should start a development server with the React application that will inte
 
 ![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/serverless%20app-2.png)
 
-![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/authToken%201.png)
-
-![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/authtoken.png)
-
 ![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/createTodos.png)
 
 ![Alt text](https://github.com/snehalmundhe10/todo/blob/main/screenshots/getTodos.png)
